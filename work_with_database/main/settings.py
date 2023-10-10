@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from dotenv import load_dotenv
 
+load_dotenv()
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -49,13 +51,13 @@ MIDDLEWARE = [
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default' : {
-        'ENGINE' : 'django.db.backends.postgresql' ,
-        'NAME' : 'sablina_import_phones' ,
-        'HOST' : '127.0.0.1' ,
-        'PORT' : '5432' ,
-        'USER' : 'some_user' ,
-        'PASSWORD' : 'secret' ,
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv("PG_DBNAME"),
+        'HOST' : '127.0.0.1',
+        'PORT': '5432',
+        'USER': os.getenv("PG_USER") ,
+        'PASSWORD': os.getenv("PG_PASSWORD")
     }
 }
 
